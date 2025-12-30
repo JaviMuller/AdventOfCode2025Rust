@@ -1,0 +1,9 @@
+[package]
+name = "day_10"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+regex = "1.12.2"
+pathfinding = "4.14.0"
+good_lp = "1.14.2"
