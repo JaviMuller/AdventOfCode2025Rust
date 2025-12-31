@@ -1,0 +1,8 @@
+[env]
+Z3_LIBRARY_PATH_OVERRIDE = "/home/linuxbrew/.linuxbrew/lib"
+Z3_SYS_Z3_HEADER = "/home/linuxbrew/.linuxbrew/include/z3.h"
+
+[build]
+rustflags = [
+  "-C", "link-arg=-Wl,-rpath,/home/linuxbrew/.linuxbrew/lib"
+]
