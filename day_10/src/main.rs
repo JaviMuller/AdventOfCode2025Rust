@@ -1,7 +1,8 @@
 use std::fs;
 use regex::Regex;
 use pathfinding::prelude::dijkstra;
-use good_lp::*;
+use good_lp::{variable, variables, constraint, Expression, Variable, SolverModel, Solution};
+use good_lp::solvers::highs::highs;
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct LightCfg(Vec<bool>);  // States for our search algorithms
@@ -78,7 +79,7 @@ fn joltage_solution(buttons: Vec<Vec<usize>>, joltages: Vec<usize>) -> usize {
     let mut problem = variables!();
     let variables : Vec<Variable> = problem.add_vector(variable().integer().min(0), buttons.len());
     let objective : Expression = variables.iter().sum();
-    let mut model = problem.minimise(objective).using(default_solver);
+    let mut model = problem.minimise(objective).using(highs);
     for pos in 0..joltages.len() {
         let joltage = joltages[pos];
         let mut constr_vars : Vec<Variable> = Vec::new();
